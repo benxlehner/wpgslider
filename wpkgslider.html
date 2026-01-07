@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Watts per Kg Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 400px;
+      margin: 50px auto;
+      text-align: center;
+    }
+    input[type="range"] {
+      width: 100%;
+    }
+    .result {
+      font-size: 2em;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Watts per Kg</h1>
+
+  <label>
+    Weight (kg):
+    <input type="number" id="weight" value="75" min="40" max="120" step="0.1">
+  </label>
+
+  <br><br>
+
+  <label>
+    Watts:
+    <input type="range" id="watts" min="50" max="600" value="250">
+  </label>
+
+  <p><strong>Watts:</strong> <span id="wattsValue">250</span></p>
+
+  <div class="result">
+    <span id="wkg">3.33</span> W/kg
+  </div>
+
+  <script>
+    const weightInput = document.getElementById("weight");
+    const wattsInput = document.getElementById("watts");
+    const wattsValue = document.getElementById("wattsValue");
+    const wkgOutput = document.getElementById("wkg");
+
+    function update() {
+      const weight = parseFloat(weightInput.value);
+      const watts = parseFloat(wattsInput.value);
+      wattsValue.textContent = watts;
+      wkgOutput.textContent = (watts / weight).toFixed(2);
+    }
+
+    weightInput.addEventListener("input", update);
+    wattsInput.addEventListener("input", update);
+
+    update();
+  </script>
+
+</body>
+</html>
